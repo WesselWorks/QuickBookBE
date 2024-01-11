@@ -13,7 +13,7 @@ import java.util.Random;
 import java.util.Set;
 
 
-@Component
+/*@Component
 public class InitData implements CommandLineRunner
 {
 
@@ -63,7 +63,8 @@ public class InitData implements CommandLineRunner
         }
     }
 
-}
+}*/
+
     /* Create 250 unique hotels with 10 to 40 rooms each.
 
     private final HotelRepo hotelRepo;

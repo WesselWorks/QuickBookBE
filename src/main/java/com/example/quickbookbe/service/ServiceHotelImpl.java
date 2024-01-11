@@ -23,9 +23,7 @@ public class ServiceHotelImpl implements ServiceHotel
         return hotelRepo.findAll();
     }
 
-    /* Denne metode returnere en ResponseEntity, som kan give
-    en HTTP status kode tilbage til klienten afhængig af om
-    det gik godt eller skidt */
+
     @Override
     public ResponseEntity<Hotel> saveHotel(Hotel hotel)
     {

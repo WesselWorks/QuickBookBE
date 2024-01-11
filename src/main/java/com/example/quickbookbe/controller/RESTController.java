@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @CrossOrigin
 public class RESTController
@@ -36,6 +37,17 @@ public class RESTController
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(updatedHotel);
+        }
+    }
+
+    @DeleteMapping("/deletehotel/{id}")
+    public ResponseEntity<Void> deleteHotel(@PathVariable int id) {
+        boolean deleted = serviceHotel.deleteHotel(id);
+
+        if (deleted) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 

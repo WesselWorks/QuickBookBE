@@ -12,4 +12,6 @@ public interface ServiceHotel
     ResponseEntity<Hotel> saveHotel(Hotel hotel);
 
     Hotel updateHotel(int id, Hotel hotelDetails);
+
+    boolean deleteHotel(int id);
 }

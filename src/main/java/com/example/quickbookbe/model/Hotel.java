@@ -21,7 +21,7 @@ public class Hotel
     private LocalDateTime created;
     private LocalDateTime updated;
 
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference("hotel-room")
     private Set<Room> rooms;
 

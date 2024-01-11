@@ -54,12 +54,25 @@ public class ServiceHotelImpl implements ServiceHotel
             hotel.setZip(hotelDetails.getZip());
             hotel.setCountry(hotelDetails.getCountry());
             hotel.setUpdated(LocalDateTime.now());
-            // tilføj kode her hvis rooms skal opdateres
             return hotelRepo.save(hotel);
         }
         else
         {
             return null;
+        }
+    }
+
+    @Override
+    public boolean deleteHotel(int id)
+    {
+        if (hotelRepo.existsById(id))
+        {
+            hotelRepo.deleteById(id);
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

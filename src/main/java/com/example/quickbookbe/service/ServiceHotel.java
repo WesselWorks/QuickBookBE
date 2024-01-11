@@ -1,4 +1,13 @@
 package com.example.quickbookbe.service;
 
-public interface ServiceHotel {
+import com.example.quickbookbe.model.Hotel;
+import org.springframework.http.ResponseEntity;
+
+import java.util.List;
+
+public interface ServiceHotel
+{
+    List<Hotel> findAllHotels();
+
+    ResponseEntity<Hotel> saveHotel(Hotel hotel);
 }

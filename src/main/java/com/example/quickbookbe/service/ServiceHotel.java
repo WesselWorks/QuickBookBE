@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface ServiceHotel
 {
-    List<Hotel> findAllHotels();
+    ResponseEntity<List<Hotel>> findAllHotels();
 
     ResponseEntity<Hotel> saveHotel(Hotel hotel);
 
-    Hotel updateHotel(int id, Hotel hotelDetails);
+    ResponseEntity<Hotel> updateHotel(int id, Hotel hotelDetails);
 
-    boolean deleteHotel(int id);
+    ResponseEntity<Void> deleteHotel(int id);
 }

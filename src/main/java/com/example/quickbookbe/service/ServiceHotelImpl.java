@@ -18,11 +18,11 @@ public class ServiceHotelImpl implements ServiceHotel
     private HotelRepo hotelRepo;
 
     @Override
-    public List<Hotel> findAllHotels()
+    public ResponseEntity<List<Hotel>> findAllHotels()
     {
-        return hotelRepo.findAll();
+        List<Hotel> hotels = hotelRepo.findAll();
+        return ResponseEntity.ok(hotels);
     }
-
 
     @Override
     public ResponseEntity<Hotel> saveHotel(Hotel hotel)
@@ -39,38 +39,31 @@ public class ServiceHotelImpl implements ServiceHotel
     }
 
     @Override
-    public Hotel updateHotel(int id, Hotel hotelDetails)
+    public ResponseEntity<Hotel> updateHotel(int id, Hotel hotelDetails)
     {
-        Hotel hotel = hotelRepo.findById(id).orElse(null);
-
-        if (hotel != null)
+        return hotelRepo.findById(id).map(hotel ->
         {
-            // Opdater hotel properties
             hotel.setName(hotelDetails.getName());
             hotel.setStreet(hotelDetails.getStreet());
             hotel.setCity(hotelDetails.getCity());
             hotel.setZip(hotelDetails.getZip());
             hotel.setCountry(hotelDetails.getCountry());
             hotel.setUpdated(LocalDateTime.now());
-            return hotelRepo.save(hotel);
-        }
-        else
-        {
-            return null;
-        }
+            return ResponseEntity.ok(hotelRepo.save(hotel));
+        }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Override
-    public boolean deleteHotel(int id)
+    public ResponseEntity<Void> deleteHotel(int id) 
     {
         if (hotelRepo.existsById(id))
         {
             hotelRepo.deleteById(id);
-            return true;
+            return ResponseEntity.ok().build();
         }
         else
         {
-            return false;
+            return ResponseEntity.notFound().build();
         }
     }
 

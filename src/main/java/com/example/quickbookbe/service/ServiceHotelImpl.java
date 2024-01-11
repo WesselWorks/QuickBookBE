@@ -31,9 +31,7 @@ public class ServiceHotelImpl implements ServiceHotel
         {
             Hotel savedHotel = hotelRepo.save(hotel);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedHotel);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -64,9 +62,7 @@ public class ServiceHotelImpl implements ServiceHotel
         {
             hotelRepo.deleteById(id);
             return ResponseEntity.ok().build();
-        }
-        else
-        {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }

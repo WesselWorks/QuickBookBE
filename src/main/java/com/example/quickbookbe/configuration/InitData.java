@@ -16,6 +16,10 @@ import java.util.Set;
 @Component
 public class InitData implements CommandLineRunner
 {
+    /*This code only creates 25 hotels with 10 to 40 rooms each,
+    but they are unique and provide a better user experience.
+    The code below this class creates 250 hotels with 10 to 40 rooms each,
+    if you want that instead.*/
 
     private final HotelRepo hotelRepo;
     private final RoomRepo roomRepo;
@@ -36,7 +40,6 @@ public class InitData implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception
     {
-
         for (int i = 0; i < 25; i++)
         {
             int countryIndex = random.nextInt(COUNTRIES.length);

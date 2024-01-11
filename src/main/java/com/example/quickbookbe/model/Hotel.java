@@ -25,11 +25,11 @@ public class Hotel
     @JsonManagedReference("hotel-room")
     private Set<Room> rooms;
 
-     /* For at ungå rekursion i JSON, skal der være en @JsonManagedReference
-     i den ene ende af relationen og en @JsonBackReference i den anden ende.
-     Hvert par af @JsonManagedReference og @JsonBackReference skal have et unikt navn.
-     Derfor ("hotel-room")
-     */
+    /* to avoid recursion in JSON, there must be a @JsonManagedReference
+    in one end of the relation and a @JsonBackReference in the other end.
+    Each pair of @JsonManagedReference and @JsonBackReference must have a unique name.
+    therefore ("hotel-room")
+    */
 
     // Getter og Settere
     public int getId() {

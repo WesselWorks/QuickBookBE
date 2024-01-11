@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -39,19 +40,27 @@ public class ServiceHotelImpl implements ServiceHotel
         }
     }
 
-
-
-
-
-
-
-
-    /* En forsimplet udgave af saveHotel() uden ResponseEntity.
-
     @Override
-    public Hotel saveHotel(Hotel hotel)
+    public Hotel updateHotel(int id, Hotel hotelDetails)
     {
-        return hotelRepo.save(hotel);
-    }*/
+        Hotel hotel = hotelRepo.findById(id).orElse(null);
+
+        if (hotel != null)
+        {
+            // Opdater hotel properties
+            hotel.setName(hotelDetails.getName());
+            hotel.setStreet(hotelDetails.getStreet());
+            hotel.setCity(hotelDetails.getCity());
+            hotel.setZip(hotelDetails.getZip());
+            hotel.setCountry(hotelDetails.getCountry());
+            hotel.setUpdated(LocalDateTime.now());
+            // tilføj kode her hvis rooms skal opdateres
+            return hotelRepo.save(hotel);
+        }
+        else
+        {
+            return null;
+        }
+    }
 
 }

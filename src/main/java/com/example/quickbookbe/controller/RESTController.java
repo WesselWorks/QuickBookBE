@@ -27,6 +27,18 @@ public class RESTController
         return serviceHotel.saveHotel(hotel);
     }
 
+    @PutMapping("/updatehotel/{id}")
+    public ResponseEntity<Hotel> updateHotel(@PathVariable int id, @RequestBody Hotel hotelDetails) {
+        // Find the hotel by id and update it with hotelDetails
+        Hotel updatedHotel = serviceHotel.updateHotel(id, hotelDetails);
+
+        if (updatedHotel == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(updatedHotel);
+        }
+    }
+
 
     /*En forsimplet udgave af createHotel() uden ResponseEntity.
 

@@ -41,20 +41,24 @@ public class ServiceHotelImpl implements ServiceHotel
     @Override
     public ResponseEntity<Hotel> updateHotel(int id, Hotel hotelDetails)
     {
-        return hotelRepo.findById(id).map(hotel ->
+        Hotel existingHotel = hotelRepo.findById(id).orElse(null);
+        if (existingHotel == null)
         {
-            hotel.setName(hotelDetails.getName());
-            hotel.setStreet(hotelDetails.getStreet());
-            hotel.setCity(hotelDetails.getCity());
-            hotel.setZip(hotelDetails.getZip());
-            hotel.setCountry(hotelDetails.getCountry());
-            hotel.setUpdated(LocalDateTime.now());
-            return ResponseEntity.ok(hotelRepo.save(hotel));
-        }).orElseGet(() -> ResponseEntity.notFound().build());
+            return ResponseEntity.notFound().build();
+        }
+        existingHotel.setName(hotelDetails.getName());
+        existingHotel.setStreet(hotelDetails.getStreet());
+        existingHotel.setCity(hotelDetails.getCity());
+        existingHotel.setZip(hotelDetails.getZip());
+        existingHotel.setCountry(hotelDetails.getCountry());
+        existingHotel.setUpdated(LocalDateTime.now());
+
+        Hotel updatedHotel = hotelRepo.save(existingHotel);
+        return ResponseEntity.ok(updatedHotel);
     }
 
     @Override
-    public ResponseEntity<Void> deleteHotel(int id) 
+    public ResponseEntity<Void> deleteHotel(int id)
     {
         if (hotelRepo.existsById(id))
         {

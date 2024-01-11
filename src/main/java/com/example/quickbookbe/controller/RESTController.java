@@ -27,6 +27,7 @@ public class RESTController
         return serviceHotel.saveHotel(hotel);
     }
 
+
     /*En forsimplet udgave af createHotel() uden ResponseEntity.
 
     @PostMapping("/newhotel")
